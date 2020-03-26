@@ -1,0 +1,23 @@
+@import "../../styles/variables.scss";
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: $standart-padding;
+  color: $standart-grey-color;
+  border-bottom: 1px solid $standart-grey-color;
+  height: 60px;
+  align-items: center;
+
+  &__days {
+    display: flex;
+
+    &-day {
+      margin-right: 20px;
+
+      a {
+        color: $standart-grey-color;
+      }
+    }
+  }
+}

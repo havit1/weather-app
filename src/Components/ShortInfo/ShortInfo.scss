@@ -1,0 +1,29 @@
+@import "../../styles/variables.scss";
+
+.short-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  border-bottom: 1px solid $standart-grey-color;
+  color: $standart-grey-color;
+
+  &__main {
+    font-weight: 600;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__name {
+    font-weight: 400;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+
+  &__additional {
+    display: flex;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+}
