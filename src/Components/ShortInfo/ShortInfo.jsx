@@ -1,13 +1,15 @@
 import React from "react";
+import AddToLocalStorageButton from "../common/AddToLocalStorageButton";
 import "./ShortInfo.scss";
 
-const ShortInfo = ({ weather, main, wind, sys, name }) => {
-  main.temp = Math.floor(main.temp);
+const ShortInfo = ({ weather, main, wind, sys, name, id }) => {
+  if (main) main.temp = Math.floor(main.temp);
 
   return (
     <div className="short-info">
+      <AddToLocalStorageButton className="short-info__button" id={id} />
       {main && <div className="short-info__main">{main.temp} ℃</div>}
-      {name && (
+      {name && sys && (
         <div className="short-info__name">
           {name}, {sys.country}
         </div>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import AutoComplete from "../common/AutoComplete";
-import { Route, Switch, Redirect, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class Search extends Component {
   state = {
@@ -13,7 +13,7 @@ class Search extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.history.push(`/search/${this.state.cityToFind.name}`);
+    this.props.history.push(`/${this.state.cityToFind.name}?today`);
   };
 
   render() {

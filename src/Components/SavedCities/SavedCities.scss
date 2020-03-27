@@ -1,0 +1,25 @@
+@import "../../styles/variables.scss";
+
+.saved-cities {
+  height: 100%;
+
+  &__header-text {
+    text-align: center;
+    padding: 1.3rem;
+    color: $standart-grey-color;
+  }
+
+  &__list {
+    padding: 0 100px 0 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    justify-content: center;
+
+    &-element {
+      height: 150px;
+      min-width: 100px;
+      margin: 10px;
+      border: 1px solid $standart-grey-color;
+    }
+  }
+}

@@ -8,6 +8,21 @@
   height: 300px;
   border-bottom: 1px solid $standart-grey-color;
   color: $standart-grey-color;
+  position: relative;
+
+  &__button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border-radius: 50%;
+    border: 3px solid $standart-grey-color;
+    color: $standart-grey-color;
+    background-color: transparent;
+    font-size: 2rem;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
 
   &__main {
     font-weight: 600;

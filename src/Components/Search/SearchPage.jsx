@@ -1,18 +1,40 @@
 import React, { Component } from "react";
-import { getCurrentWeatherWithName } from "../../utils/apiRequests";
+import {
+  getCurrentWeatherWithName,
+  getWeatherForWeek
+} from "../../utils/apiRequests";
 import ShortInfo from "../ShortInfo/ShortInfo";
+import DayPage from "../DayPages/DayPage";
+import { sortByDay } from "../../utils/utils";
+import WeekPage from "../DayPages/WeekPage";
 
 class SearchPage extends Component {
   state = {
     cityWeather: {},
-    loaded: false
+    forecast: {},
+    currentWeatherLoaded: false,
+    futureWeatherLoaded: false
   };
 
   getCityWeather = async () => {
-    const weather = await getCurrentWeatherWithName(
-      this.props.match.params.name
-    );
-    this.setState({ cityWeather: weather, loaded: true });
+    console.log("Getting city weather on SearchPage");
+    try {
+      const weather = await getCurrentWeatherWithName(
+        this.props.match.params.name
+      );
+      this.setState({ cityWeather: weather, currentWeatherLoaded: true });
+
+      const futureWeather = await getWeatherForWeek(weather.id);
+      this.setState({ forecast: futureWeather });
+      futureWeather.list &&
+        this.setState({
+          forecast: sortByDay(futureWeather.list),
+          futureWeatherLoaded: true
+        });
+    } catch (error) {
+      console.log(error.message);
+      this.props.history.replace("/error");
+    }
   };
 
   componentDidMount() {
@@ -21,20 +43,53 @@ class SearchPage extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.match.params.name === this.props.match.params.name) return;
-    this.setState({ loaded: false });
+    this.setState({ currentWeatherLoaded: false, futureWeatherLoaded: false });
     this.getCityWeather();
   }
 
+  renderDay = () => {
+    const { forecast } = this.state;
+    const { location } = this.props;
+
+    const weatherToShow =
+      forecast.length > 0 && location.search === "?today"
+        ? forecast[0]
+        : location.search === "?tommorrow"
+        ? forecast[1]
+        : forecast;
+
+    if (
+      this.props.location.search === "?today" ||
+      this.props.location.search === "?tommorrow"
+    ) {
+      return (
+        <DayPage
+          weatherArray={weatherToShow}
+          day={location.search === "?today" ? "today" : "tommorrow"}
+        />
+      );
+    } else if (this.props.location.search === "?week") {
+      return <WeekPage weatherArray={weatherToShow} />;
+    }
+  };
+
   render() {
     const {
-      loaded,
-      cityWeather: { weather, main, wind }
+      cityWeather,
+      currentWeatherLoaded,
+      futureWeatherLoaded
     } = this.state;
 
     return (
-      loaded && (
+      currentWeatherLoaded && (
         <div>
-          <ShortInfo weather={weather} main={main} wind={wind} />
+          <ShortInfo
+            main={cityWeather.main}
+            sys={cityWeather.sys}
+            name={cityWeather.name}
+            id={cityWeather.id}
+          />
+          {futureWeatherLoaded && this.renderDay()}
         </div>
       )
     );

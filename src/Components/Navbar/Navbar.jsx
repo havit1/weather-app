@@ -1,29 +1,28 @@
-import React, { Component } from "react";
+import React from "react";
 import Search from "../Search/SearchForm";
-import { Route, Switch, Redirect, withRouter, Link } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import "./Navbar.scss";
 
-class Navbar extends Component {
-  state = {};
+const Navbar = ({ location }) => {
+  return (
+    <div className="navbar">
+      <ul className="navbar__days">
+        <li className="navbar__days-day">
+          <NavLink to="/">Home</NavLink>
+        </li>
+        <li className="navbar__days-day">
+          <NavLink to={`${location.pathname}?today`}>Today</NavLink>
+        </li>
+        <li className="navbar__days-day">
+          <NavLink to={`${location.pathname}?tommorrow`}>Tomorrow</NavLink>
+        </li>
+        <li className="navbar__days-day">
+          <NavLink to={`${location.pathname}?week`}>Week</NavLink>
+        </li>
+      </ul>
+      <Search />
+    </div>
+  );
+};
 
-  render() {
-    return (
-      <div className="navbar">
-        <ul className="navbar__days">
-          <li className="navbar__days-day">
-            <Link>Today</Link>
-          </li>
-          <li className="navbar__days-day">
-            <Link>Tomorrow</Link>
-          </li>
-          <li className="navbar__days-day">
-            <Link>Week</Link>
-          </li>
-        </ul>
-        <Search />
-      </div>
-    );
-  }
-}
-
-export default Navbar;
+export default withRouter(Navbar);
