@@ -36,7 +36,7 @@ const DayPage = ({ weatherArray, day, coord, currentTemp }) => {
         currentTemp={currentTemp}
         coord={coord}
         isMarkerShown
-        googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9dv8BDCycsXOineVmMQxIAmXxBKk1PFo&callback=initMap"
+        googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&callback=initMap`}
         loadingElement={<div className="map__loadingElement" />}
         containerElement={<div className="map__containerElement" />}
         mapElement={<div className="map__mapElement" />}

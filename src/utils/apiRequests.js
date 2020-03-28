@@ -1,11 +1,9 @@
 import axios from "axios";
 
 export const getCurrentWeatherWithName = async cityName => {
-  console.log("getCurrentWeatherWithName");
-
   try {
     const res = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&APPID=a207664f1fa85c652a590286a90d02a0`
+      `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&APPID=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
     );
     const { data } = res;
     return data;
@@ -15,11 +13,9 @@ export const getCurrentWeatherWithName = async cityName => {
 };
 
 export const getCurrentWeatherWithId = async id => {
-  console.log("getCurrentWeatherWithId");
-
   try {
     const res = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?id=${id}&units=metric&APPID=a207664f1fa85c652a590286a90d02a0`
+      `https://api.openweathermap.org/data/2.5/weather?id=${id}&units=metric&APPID=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
     );
     const { data } = res;
     return data;
@@ -29,11 +25,9 @@ export const getCurrentWeatherWithId = async id => {
 };
 
 export const getWeatherForWeek = async id => {
-  console.log("getWeatherForWeek");
-
   try {
     const res = await axios.get(
-      `https://api.openweathermap.org/data/2.5/forecast?id=${id}&units=metric&appid=a207664f1fa85c652a590286a90d02a0`
+      `https://api.openweathermap.org/data/2.5/forecast?id=${id}&units=metric&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
     );
 
     const { data } = res;
@@ -44,11 +38,9 @@ export const getWeatherForWeek = async id => {
 };
 
 export const getWeatherWithPos = async (latitude, longitude) => {
-  console.log("getWeatherWithPos");
-
   try {
     const res = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&APPID=a207664f1fa85c652a590286a90d02a0`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&APPID=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
     );
     const { data } = res;
     return data;
@@ -58,12 +50,11 @@ export const getWeatherWithPos = async (latitude, longitude) => {
 };
 
 export const getWeatherOfCityGroupById = async arrayOfIds => {
-  console.log("getWeatherOfCityGroupById");
   let idsToSearch = arrayOfIds.map(city => city.id).join(",");
 
   try {
     const res = await axios.get(
-      `https://api.openweathermap.org/data/2.5/group?id=${idsToSearch}&units=metric&APPID=a207664f1fa85c652a590286a90d02a0`
+      `https://api.openweathermap.org/data/2.5/group?id=${idsToSearch}&units=metric&APPID=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
     );
     const {
       data: { list }
