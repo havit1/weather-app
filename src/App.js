@@ -16,7 +16,7 @@ class App extends Component {
             <Route path="/" exact component={Home} />
             <Route path="/:name" exact component={SearchPage} />
 
-            <Redirect to="/error" component={() => <div>404</div>} />
+            <Route to="/error" component={() => <h1>404 not found</h1>} />
           </Switch>
         </div>
       </CitiesProvider>
