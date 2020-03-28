@@ -23,7 +23,11 @@ const MapComponent = withScriptjs(
           >
             {showInfo && (
               <InfoWindow onCloseClick={() => setShowInfo(false)}>
-                <p>{props.currentTemp} ℃</p>
+                <>
+                  <p>Temperature now:{props.currentWeather.temp} ℃</p>
+                  <p>Humidity now:{props.currentWeather.humidity}</p>
+                  <p>Pressure now:{props.currentWeather.pressure}</p>
+                </>
               </InfoWindow>
             )}
           </Marker>

@@ -3,7 +3,7 @@ import moment from "moment";
 import MapComponent from "../common/MapComponent";
 import "./DayPage.scss";
 
-const DayPage = ({ weatherArray, day, coord, currentTemp }) => {
+const DayPage = ({ weatherArray, day, coord, currentWeather }) => {
   const name = moment(weatherArray[0].dt_txt).format("dddd");
   const date = moment(weatherArray[0].dt_txt).date();
 
@@ -33,7 +33,7 @@ const DayPage = ({ weatherArray, day, coord, currentTemp }) => {
         </div>
       </div>
       <MapComponent
-        currentTemp={currentTemp}
+        currentWeather={currentWeather}
         coord={coord}
         isMarkerShown
         googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&callback=initMap`}

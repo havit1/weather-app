@@ -70,7 +70,7 @@ class SearchPage extends Component {
           coord={coord}
           weatherArray={weatherToShow}
           day={location.search === "?today" ? "today" : "tommorrow"}
-          currentTemp={main.temp}
+          currentWeather={main}
         />
       );
     } else if (this.props.location.search === "?week") {
