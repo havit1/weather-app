@@ -48,7 +48,10 @@ class SearchPage extends Component {
   }
 
   renderDay = () => {
-    const { forecast } = this.state;
+    const {
+      forecast,
+      cityWeather: { coord, main }
+    } = this.state;
     const { location } = this.props;
 
     const weatherToShow =
@@ -64,8 +67,10 @@ class SearchPage extends Component {
     ) {
       return (
         <DayPage
+          coord={coord}
           weatherArray={weatherToShow}
           day={location.search === "?today" ? "today" : "tommorrow"}
+          currentTemp={main.temp}
         />
       );
     } else if (this.props.location.search === "?week") {

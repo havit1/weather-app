@@ -1,0 +1,54 @@
+@import "../../styles/variables.scss";
+
+.day-page {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  color: $standart-grey-color;
+  padding: 50px 150px 0 150px;
+
+  &__forecast {
+    width: max-content;
+
+    & h1 {
+      margin-bottom: 1rem;
+    }
+
+    & h3 {
+      padding-bottom: 4rem;
+      font-weight: 400;
+    }
+
+    &-table {
+      text-align: left;
+      & div:first-child {
+        border-bottom: 1px solid $standart-grey-color;
+        width: 60%;
+      }
+
+      &-row {
+        padding: 1rem 0 1rem 0;
+        display: flex;
+      }
+
+      &-column-1 {
+        width: 60px;
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.map__loadingElement {
+  height: 100%;
+}
+
+.map__containerElement {
+  height: 400px;
+  width: 70%;
+  min-width: 300px;
+}
+
+.map__mapElement {
+  height: 100%;
+}

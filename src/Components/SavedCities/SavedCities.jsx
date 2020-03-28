@@ -56,8 +56,12 @@ class SavedCities extends Component {
               city && (
                 <li className="saved-cities__list-element" key={city.id}>
                   <Link to={`/${city.name}?today`}>
-                    <div>{city.name}</div>
-                    <div>{city.main.temp} ℃</div>
+                    <p className="saved-cities__list-element-name">
+                      {city.name}
+                    </p>
+                    <p className="saved-cities__list-element-temp">
+                      {city.main.temp} ℃
+                    </p>
                   </Link>
                 </li>
               )

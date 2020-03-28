@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import Search from "../Search/SearchForm";
 import { NavLink, withRouter } from "react-router-dom";
+import CitiesContext from "../../Context/cities-context";
 import "./Navbar.scss";
 
 const Navbar = ({ location }) => {
+  const context = useContext(CitiesContext);
+
+  const link =
+    location.pathname.length > 1 ? location.pathname : context.homeCity.name;
+
   return (
     <div className="navbar">
       <ul className="navbar__days">
@@ -11,13 +17,13 @@ const Navbar = ({ location }) => {
           <NavLink to="/">Home</NavLink>
         </li>
         <li className="navbar__days-day">
-          <NavLink to={`${location.pathname}?today`}>Today</NavLink>
+          <NavLink to={`${link}?today`}>Today</NavLink>
         </li>
         <li className="navbar__days-day">
-          <NavLink to={`${location.pathname}?tommorrow`}>Tomorrow</NavLink>
+          <NavLink to={`${link}?tommorrow`}>Tomorrow</NavLink>
         </li>
         <li className="navbar__days-day">
-          <NavLink to={`${location.pathname}?week`}>Week</NavLink>
+          <NavLink to={`${link}?week`}>Week</NavLink>
         </li>
       </ul>
       <Search />

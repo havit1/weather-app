@@ -6,7 +6,6 @@ class Autocomplete extends Component {
     userInput: "",
     activeSuggestion: 0,
     filteredSuggestions: [],
-    showSuggestions: false,
     chosenCityId: null
   };
 
@@ -20,11 +19,12 @@ class Autocomplete extends Component {
           suggestion.name.toLowerCase().indexOf(userInput.toLowerCase()) > -1
       );
 
+    this.props.setShowSuggestions(true);
+
     this.setState(
       {
         activeSuggestion: 0,
         filteredSuggestions,
-        showSuggestions: true,
         userInput: e.currentTarget.value
       },
       () =>
@@ -36,6 +36,8 @@ class Autocomplete extends Component {
   };
 
   onClick = (e, id) => {
+    this.props.setShowSuggestions(false);
+
     this.setState(
       {
         activeSuggestion: 0,
@@ -52,36 +54,12 @@ class Autocomplete extends Component {
     );
   };
 
-  onKeyDown = e => {
-    const { activeSuggestion, filteredSuggestions } = this.state;
-
-    if (e.keyCode === 13) {
-      this.setState({
-        activeSuggestion: 0,
-        showSuggestions: false,
-        userInput: filteredSuggestions[activeSuggestion]
-      });
-    } else if (e.keyCode === 38) {
-      if (activeSuggestion === 0) {
-        return;
-      }
-
-      this.setState({ activeSuggestion: activeSuggestion - 1 });
-    } else if (e.keyCode === 40) {
-      if (activeSuggestion - 1 === filteredSuggestions.length) {
-        return;
-      }
-
-      this.setState({ activeSuggestion: activeSuggestion + 1 });
-    }
-  };
-
   render() {
     let suggestionsListComponent;
-    if (this.state.showSuggestions && this.state.userInput) {
+    if (this.props.showSuggestions && this.state.userInput) {
       if (this.state.filteredSuggestions.length) {
         suggestionsListComponent = (
-          <ul>
+          <ul className={this.props.suggestionsClassname}>
             {this.state.filteredSuggestions.map((suggestion, index) => {
               return (
                 <li
@@ -94,21 +72,15 @@ class Autocomplete extends Component {
             })}
           </ul>
         );
-      } else {
-        suggestionsListComponent = (
-          <div>
-            <em>No suggestions!</em>
-          </div>
-        );
       }
     }
 
     return (
       <>
         <input
+          className={this.props.inputClassname}
           type="text"
           onChange={this.onChange}
-          //   onKeyDown={this.onKeyDown}
           value={this.state.userInput}
           placeholder="Find city..."
         />

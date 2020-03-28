@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import "./WeekPage.scss";
 
 const WeekPage = ({ weatherArray }) => {
   const start = moment(weatherArray[0][0].dt_txt).format("MMMM, D");
@@ -22,22 +23,21 @@ const WeekPage = ({ weatherArray }) => {
   };
 
   const days = tempToShow();
-  console.log(days);
 
   return (
-    <div>
-      <div>
-        <h1>Week</h1>
-        <h3>{`${start} - ${end}`}</h3>
-        <ul>
-          {days.map(d => (
-            <li key={d.day}>
-              <div>{moment(d.day).format("dddd, D")}</div>
-              <div>{d.tmp} ℃</div>
-            </li>
-          ))}
-        </ul>
-      </div>
+    <div className="week-page">
+      <h1>Week</h1>
+      <h3>{`${start} - ${end}`}</h3>
+      <ul className="week-page__list">
+        {days.map(d => (
+          <li className="week-page__list-element" key={d.day}>
+            <p className="week-page__list-element-day">
+              {moment(d.day).format("dddd, D")}
+            </p>
+            <p className="week-page__list-element-temp">{d.tmp} ℃</p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

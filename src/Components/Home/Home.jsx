@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ShortInfo from "../ShortInfo/ShortInfo";
 import SavedCities from "../SavedCities/SavedCities";
 import { getWeatherWithPos } from "../../utils/apiRequests";
+import CitiesContext from "../../Context/cities-context";
 class Home extends Component {
   state = {
     cityInfo: {},
@@ -18,6 +19,7 @@ class Home extends Component {
             pos.coords.longitude
           );
           this.setState({ cityInfo: userWeather, loaded: true });
+          this.context.setHomeCity(userWeather);
         } catch (error) {
           console.log(error.message);
           this.setState({ loaded: false });
@@ -39,21 +41,21 @@ class Home extends Component {
     return (
       <>
         {loaded && (
-          <div>
-            <ShortInfo
-              weather={cityInfo.weather}
-              main={cityInfo.main}
-              wind={cityInfo.wind}
-              sys={cityInfo.sys}
-              name={cityInfo.name}
-              id={cityInfo.id}
-            ></ShortInfo>
-          </div>
+          <ShortInfo
+            weather={cityInfo.weather}
+            main={cityInfo.main}
+            wind={cityInfo.wind}
+            sys={cityInfo.sys}
+            name={cityInfo.name}
+            id={cityInfo.id}
+          ></ShortInfo>
         )}
         <SavedCities />
       </>
     );
   }
 }
+
+Home.contextType = CitiesContext;
 
 export default Home;
