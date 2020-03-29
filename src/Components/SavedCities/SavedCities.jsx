@@ -48,7 +48,7 @@ class SavedCities extends Component {
     const { citiesWithDetailedInfo } = this.state;
 
     return (
-      <div className="saved-cities">
+      <section className="saved-cities">
         <h1 className="saved-cities__header-text">Saved Cities</h1>
         <ul className="saved-cities__list">
           {citiesWithDetailedInfo.map(
@@ -67,7 +67,7 @@ class SavedCities extends Component {
               )
           )}
         </ul>
-      </div>
+      </section>
     );
   }
 }

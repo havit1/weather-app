@@ -8,7 +8,7 @@ const DayPage = ({ weatherArray, day, coord, currentWeather }) => {
   const date = moment(weatherArray[0].dt_txt).date();
 
   return (
-    <div className="day-page">
+    <section className="day-page">
       <div className="day-page__forecast">
         <h1>{day[0].toUpperCase() + day.slice(1)}</h1>
         <h3>{`${name}, ${date}`}</h3>
@@ -41,7 +41,7 @@ const DayPage = ({ weatherArray, day, coord, currentWeather }) => {
         containerElement={<div className="map__containerElement" />}
         mapElement={<div className="map__mapElement" />}
       />
-    </div>
+    </section>
   );
 };
 

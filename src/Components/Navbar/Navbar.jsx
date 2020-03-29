@@ -11,7 +11,7 @@ const Navbar = ({ location }) => {
     location.pathname.length > 1 ? location.pathname : context.homeCity.name;
 
   return (
-    <div className="navbar">
+    <nav className="navbar">
       <ul className="navbar__days">
         <li className="navbar__days-day">
           <NavLink to="/">Home</NavLink>
@@ -27,7 +27,7 @@ const Navbar = ({ location }) => {
         </li>
       </ul>
       <Search />
-    </div>
+    </nav>
   );
 };
 

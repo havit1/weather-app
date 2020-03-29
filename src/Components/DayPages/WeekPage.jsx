@@ -25,7 +25,7 @@ const WeekPage = ({ weatherArray }) => {
   const days = tempToShow();
 
   return (
-    <div className="week-page">
+    <section className="week-page">
       <h1>Week</h1>
       <h3>{`${start} - ${end}`}</h3>
       <ul className="week-page__list">
@@ -38,7 +38,7 @@ const WeekPage = ({ weatherArray }) => {
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 };
 

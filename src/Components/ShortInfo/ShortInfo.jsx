@@ -6,7 +6,7 @@ const ShortInfo = ({ weather, main, wind, sys, name, id }) => {
   if (main) main.temp = Math.floor(main.temp);
 
   return (
-    <div className="short-info">
+    <section className="short-info">
       <AddToLocalStorageButton className="short-info__button" id={id} />
       {main && <div className="short-info__main">{main.temp} ℃</div>}
       {name && sys && (
@@ -28,7 +28,7 @@ const ShortInfo = ({ weather, main, wind, sys, name, id }) => {
           )}
         </div>
       )}
-    </div>
+    </section>
   );
 };
 
